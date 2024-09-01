@@ -41,7 +41,7 @@ jobs:
         id: rename
         run: |
           DIRECTORY_PATH="${{ steps.build-app.outputs.fap-artifacts }}"
-          SUFFIX="${{ steps.build-app.outputs.suffix }}"
+          SUFFIX="${{ matrix.sdk-channel }}"
 
           # 获取文件的目录路径
           DIR_PATH=$(dirname "$DIRECTORY_PATH")
