@@ -37,11 +37,41 @@ jobs:
           name: ${{ github.event.repository.name }}-${{ steps.build-app.outputs.suffix }}
           path: ${{ steps.build-app.outputs.fap-artifacts }}
 
+      - name: Rename
+        id: rename
+        run: |
+          DIRECTORY_PATH="${{ steps.build-app.outputs.fap-artifacts }}"
+          SUFFIX="${{ steps.build-app.outputs.suffix }}"
+
+          # 获取文件的目录路径
+          DIR_PATH=$(dirname "$DIRECTORY_PATH")
+          BASENAME=$(basename "$DIRECTORY_PATH")
+          
+          # 检查是否是文件
+          if [ -f "$DIRECTORY_PATH" ]; then
+            # 获取文件名和扩展名
+            EXTENSION="${BASENAME##*.}"
+            FILENAME="${BASENAME%.*}"
+
+            # 新文件名
+            NEW_NAME="${FILENAME}-${SUFFIX}.${EXTENSION}"
+
+            # 重命名文件
+            mv "$DIRECTORY_PATH" "$DIR_PATH/$NEW_NAME"
+
+            # 输出重命名后的文件路径
+            echo "new_file_path=$DIR_PATH/$NEW_NAME" >> $GITHUB_ENV
+          fi
+
+          # 输出重命名后的文件列表
+          echo "Renamed file:"
+          ls "$DIR_PATH"
+
       - name: Release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ github.ref_name }}
           draft: false
-          artifacts: ${{ steps.build-app.outputs.fap-artifacts }}
+          artifacts: ${{ env.new_file_path }}
           allowUpdates: true
           token: ${{ secrets.TOKEN }}
