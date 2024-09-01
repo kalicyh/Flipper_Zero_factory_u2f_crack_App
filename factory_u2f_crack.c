@@ -1,5 +1,4 @@
 #include <furi.h>
-#include <furi_hal.h>
 //用于图形显示
 #include <gui/gui.h>
 //用于按键操作
@@ -148,9 +147,7 @@ int32_t factory_u2f_crack_app(void* p) {
                     break;
                 //按确认键
                 case InputKeyOk:
-
                     furi_hal_crypto_generate_unique_keys(0, 10);
-
                 //按左键
                 case InputKeyLeft:
                     break;
