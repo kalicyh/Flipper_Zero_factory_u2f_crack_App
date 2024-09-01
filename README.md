@@ -1,8 +1,4 @@
-# Flipper_Zero_Apps
-
-Flipper Zero 软件清单
-
- - factory_u2f_crack
+# factory_u2f_crack
 
 ## 常用命令
 

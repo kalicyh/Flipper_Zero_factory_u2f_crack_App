@@ -1,0 +1,17 @@
+# For details & more options, see documentation/AppManifests.md in firmware repo
+
+App(
+    appid="factory_u2f_crack",  # Must be unique
+    name="App factory_u2f_crack",  # Displayed in menus
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="factory_u2f_crack_app",
+    requires=["gui"],
+    stack_size=2 * 1024,
+    fap_category="Tools",
+    fap_version="0.1",
+    fap_icon="factory_u2f_crack.png",  # 10x10 1-bit PNG
+    fap_description="A simple app for factory key or u2f crack",
+    fap_author="Kalicyh",
+    fap_weburl="https://github.com/kalicyh/Flipper_Zero_Apps",
+    order=10,
+)
