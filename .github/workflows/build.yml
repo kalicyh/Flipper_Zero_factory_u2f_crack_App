@@ -5,13 +5,8 @@ name: "FAP: Build for multiple SDK sources"
 
 on:
   push:
-    ## put your main branch name under "branches"
-    branches: 
-     - factory_u2f_crack
-  pull_request:
-  schedule: 
-    # do a build every day
-    - cron: "1 1 * * *"
+    tags:
+      - "v*.*.*"   # 可根据实际情况指定tag格式，例如: "v1.0.0"
 
 jobs:
   ufbt-build:
@@ -28,14 +23,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Build with ufbt
         uses: flipperdevices/flipperzero-ufbt-action@v0.1.3
         id: build-app
         with:
           sdk-channel: ${{ matrix.sdk-channel }}
+
       - name: Upload app artifacts
         uses: actions/upload-artifact@v4
         with:
           # See ufbt action docs for other output variables
           name: ${{ github.event.repository.name }}-${{ steps.build-app.outputs.suffix }}
           path: ${{ steps.build-app.outputs.fap-artifacts }}
+
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ github.ref_name }}
+          draft: false
+          artifacts: ${{ steps.build-app.outputs.fap-artifacts }}
+          allowUpdates: true
+          token: ${{ secrets.TOKEN }}
