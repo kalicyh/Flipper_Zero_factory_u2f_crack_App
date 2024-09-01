@@ -5,7 +5,7 @@
 // 用于按键操作
 #include <input/input.h>
 
-const uint8_t zhairen_font[] =
+static const uint8_t zhairen_font[] =
     "\223\0\3\2\4\4\2\4\5\11\12\0\376\7\376\10\377\1\71\2\177\3\230 "
     "\5\0f\4!\7q\242"
     "\304\240\4\42\7\63\62Eb\11#\13U\246MeP*\203R\1$\16\225\236U\266T\224lK\224"
