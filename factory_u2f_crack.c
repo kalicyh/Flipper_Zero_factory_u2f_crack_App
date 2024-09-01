@@ -1,5 +1,5 @@
 #include <furi.h>
-
+#include <furi_hal.h>
 // 用于图形显示
 #include <gui/gui.h>
 // 用于按键操作
