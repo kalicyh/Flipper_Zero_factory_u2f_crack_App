@@ -8,6 +8,7 @@ App(
     requires=["gui"],
     stack_size=2 * 1024,
     fap_category="Tools",
+    fap_icon_assets="assets",
     fap_version="0.1",
     fap_icon="factory_u2f_crack.png",  # 10x10 1-bit PNG
     fap_description="A simple app for factory key or u2f crack",
