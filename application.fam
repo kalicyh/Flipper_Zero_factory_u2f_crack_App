@@ -2,7 +2,7 @@
 
 App(
     appid="factory_u2f_crack",  # Must be unique
-    name="App factory_u2f_crack",  # Displayed in menus
+    name="factory_u2f_crack",  # Displayed in menus
     apptype=FlipperAppType.EXTERNAL,
     entry_point="factory_u2f_crack_app",
     requires=["gui"],
